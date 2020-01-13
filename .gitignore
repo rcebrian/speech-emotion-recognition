@@ -21,10 +21,6 @@ __pycache__/
 # C extensions
 *.so
 
-# models extensions
-*.sav
-data/.config/*.json
-
 # Distribution / packaging
 .Python
 build/
