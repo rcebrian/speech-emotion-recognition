@@ -1,6 +1,6 @@
 # Speech Emotion Recognition
 ## Description
-This repository allows the code for the flask app.
+This repository allows the code and the audios for the speech emotion recognition
 ## Configuration
 ### Local configuration
 ```shell script
