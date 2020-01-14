@@ -47,5 +47,5 @@ def mfccs_test(num):
 
 
 if __name__ == '__main__':
-    mfccs_data('1')
-    mfccs_data('2')
+    mfccs_test('1')
+    mfccs_test('2')
