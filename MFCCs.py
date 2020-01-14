@@ -14,16 +14,21 @@ def extract_feature(file_name):
 
 if __name__ == '__main__':
     df = pd.DataFrame()
-
+    
     for dirs in os.listdir('./data'):
         for fi in os.listdir('./data/' + dirs + '/'):
-            aux = []
+            aux = []   
             aux.append(fi.split('_', 1)[0])
             mfccs = extract_feature('./data/' + dirs + '/' + fi)
-            aux.extend(mfccs)
-            aux.extend(librosa.feature.delta(mfccs))
-            aux.extend(librosa.feature.delta(mfccs, order=2))
-            # print(aux)
-            # print('>>>>>>>')
-            df.append(aux)
-    df.to_csv('prueba.csv')
+            
+            newArray = np.append(aux, mfccs)
+            newArray = np.append (newArray, librosa.feature.delta(mfccs))
+            newArray = np.append(newArray, librosa.feature.delta(mfccs, order=2))
+            
+            aux=[]
+            aux.append(newArray)
+            df = df.append(aux, ignore_index=True)
+    df.to_csv('prueba.csv', index = None, header=True)
+    print("FINNN")
+
+ 
