@@ -15,10 +15,10 @@ def extract_feature(file_name):
 def mfccs_data():
     df = pd.DataFrame()
 
-    for dirs in os.listdir('./data'):
-        for fi in os.listdir('./data/' + dirs + '/'):
+    for dirs in os.listdir(r'../../data'):
+        for fi in os.listdir(r'../../data/' + dirs + '/'):
             aux = [fi.split('_', 1)[0]]
-            mfccs = extract_feature('./data/' + dirs + '/' + fi)
+            mfccs = extract_feature(r'../../data/' + dirs + '/' + fi)
 
             newArray = np.append(aux, mfccs)
             newArray = np.append(newArray, librosa.feature.delta(mfccs))
@@ -26,12 +26,12 @@ def mfccs_data():
 
             aux = [newArray]
             df = df.append(aux, ignore_index=True)
-    df.to_csv('prueba.csv', index=None, header=True)
+    df.to_csv(r'../datos_preprocesados.csv', index=None, header=True)
 
 
 def mfccs_test(num):
     df = pd.DataFrame()
-    path = './tests/Test' + num
+    path = r'../../tests/Test' + num
 
     for fi in os.listdir(path):
         aux = [fi.split('_', 1)[0]]
@@ -43,9 +43,10 @@ def mfccs_test(num):
 
         aux = [newArray]
         df = df.append(aux, ignore_index=True)
-    df.to_csv('test-0' + num + '.csv', index=None, header=True)
+    df.to_csv(r'../test-0' + num + '.csv', index=None, header=True)
 
 
 if __name__ == '__main__':
+    mfccs_data()
     mfccs_test('1')
     mfccs_test('2')
